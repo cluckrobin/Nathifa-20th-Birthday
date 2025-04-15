@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Birthday, My Princess</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: linear-gradient(#ffe6f0, #ffffff);
+      font-family: 'Arial', sans-serif;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    .container {
+      text-align: center;
+      padding: 40px;
+      min-height: 200vh;
+    }
+
+    .image {
+      max-width: 80%;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      margin-bottom: 20px;
+    }
+
+    .letter-button, .music-button {
+      padding: 12px 24px;
+      font-size: 18px;
+      background-color: #ff6699;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      transition: 0.3s;
+      margin-bottom: 20px;
+      margin-right: 10px;
+    }
+
+    .letter-button:hover, .music-button:hover {
+      background-color: #ff3366;
+    }
+
+    .extra-images {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .extra-images img {
+      max-width: 300px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .balloon, .love {
+      position: absolute;
+      animation: floatUp 8s linear infinite;
+      opacity: 0.8;
+    }
+
+    .balloon {
+      color: #ff99cc;
+      font-size: 2rem;
+    }
+
+    .love {
+      color: #ff3366;
+      font-size: 1.8rem;
+    }
+
+    @keyframes floatUp {
+      0% {transform: translateY(100vh) translateX(0);} 
+      100% {transform: translateY(-20vh) translateX(-20px); opacity: 0;}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="assets/hbd.png" alt="Birthday Gift" class="image">
+
+    <div>
+      <button class="letter-button" onclick="openLetterPage()">💌 Buka Surat</button>
+      <button class="music-button" onclick="toggleMusic()">🎵 Play / Pause Music</button>
+    </div>
+
+    <div class="extra-images">
+      <img src="assets/couple1.png" alt="Couple Image 1">
+      <img src="assets/couple2.png" alt="Couple Image 2">
+    </div>
+
+    <audio id="bgMusic" autoplay loop>
+      <source src="assets/lagu.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <script>
+    function openLetterPage() {
+      const newWindow = window.open('', '_blank');
+      newWindow.document.write(`
+        <html>
+        <head>
+          <title>Surat Untukmu</title>
+          <style>
+            html, body {
+              margin: 0;
+              padding: 40px;
+              font-family: 'Arial', sans-serif;
+              background-color: #ffe6f0;
+              color: white;
+              overflow-y: auto;
+              text-align: center;
+            }
+            .letter-box {
+              background-color: #ff99cc;
+              padding: 40px;
+              border-radius: 16px;
+              width: 80%;
+              font-size: 26px;
+              white-space: pre-line;
+              box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+              margin: auto;
+              display: inline-block;
+              text-align: left;
+            }
+          </style>
+        </head>
+        <body>
+          <div class="letter-box">
+cheers to my princess tercantik dan tersayang yang pernah aku temui seumur hidup aku. happy birthday ya sayang 💖 aku doain semua yang terbaik buat kamu. semoga kamu selalu bahagia, dikelilingi cinta, dan dapetin semua hal indah yang kamu pantas dapet.
+
+aku bener-bener bersyukur kamu ada di dunia ini, karena kamu bikin semuanya terasa lebih baik. aku bakal selalu ada buat kamu, apapun yang terjadi. kamu nggak sendirian, kamu selalu punya aku.
+
+aku harap kamu menang di kehidupan ini dan semua yang kamu impikan bisa cepet-cepet jadi kenyataan. semoga kamu selalu diberi kesehatan, dilancarkan semua hal yang kamu lakuin, entah itu buat diri kamu sendiri, buat kita, atau buat keluarga.
+
+aku seneng banget bisa rayain ulang tahun kamu setiap tahun, dan aku pengen terus rayain sampe kapan pun itu, sampe kita tua nanti. makasih ya udah lahir ke dunia ini, sayang.
+
+tahun ini aku bikin sesuatu yang spesial. aku coding-in website buat kamu biar beda dari tahun sebelumnya, semoga kamu sukaa 💻💗 aku bakal selalu sayang kamu. i love you so much, nathifa farah.
+
+and once again, i love you more than anything ❤️❤️❤️❤️❤️❤️
+          </div>
+        </body>
+        </html>
+      `);
+    }
+
+    function toggleMusic() {
+      const music = document.getElementById('bgMusic');
+      if (music.paused) {
+        music.play();
+      } else {
+        music.pause();
+      }
+    }
+
+    function createFloatingElements() {
+      const emojis = ['🎈', '🎈', '❤️', '💗'];
+      for (let i = 0; i < 30; i++) {
+        const el = document.createElement('div');
+        el.className = (i % 2 === 0) ? 'balloon' : 'love';
+        el.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+        el.style.left = Math.random() * 100 + 'vw';
+        el.style.top = Math.random() * 100 + 'vh';
+        el.style.animationDuration = (5 + Math.random() * 5) + 's';
+        document.body.appendChild(el);
+      }
+    }
+
+    createFloatingElements();
+  </script>
+</body>
+</html>
